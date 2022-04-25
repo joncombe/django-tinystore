@@ -1,0 +1,7 @@
+*.pyc
+data
+www
+Dockerfile
+docker-compose.yml
+manage.py
+requirements.txt
