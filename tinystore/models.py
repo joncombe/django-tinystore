@@ -13,10 +13,6 @@ class TinyStore(models.Model):
     def clear():
         TinyStore.objects.all().delete()
 
-    # delete a given tinystore
-    def delete(key):
-        TinyStore.objects.filter(key=key).delete()
-
     # does a tinystore exist?
     def exists(key):
         return TinyStore.objects.filter(key=key).count() > 0
@@ -31,6 +27,10 @@ class TinyStore(models.Model):
         return list(
             TinyStore.objects.all().order_by("key").values_list("key", flat=True)
         )
+
+    # remove a given tinystore
+    def remove(key):
+        TinyStore.objects.filter(key=key).delete()
 
     # write a tinystore to the database
     def set(key, value):
