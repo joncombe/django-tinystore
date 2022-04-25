@@ -1,5 +1,7 @@
 *.pyc
 data
+django_tinystore.egg-info
+dist
 www
 Dockerfile
 docker-compose.yml
