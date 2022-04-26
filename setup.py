@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="django-tinystore",
-    version="0.0.1",
+    version="0.0.2",
     author="Jon Combe",
     author_email="jon@naremit.com",
     packages=find_packages(),

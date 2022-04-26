@@ -9,18 +9,14 @@ class TinyStore(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
 
-    # delete all tinystores
-    def clear():
-        TinyStore.objects.all().delete()
-
     # does a tinystore exist?
     def exists(key):
         return TinyStore.objects.filter(key=key).count() > 0
 
     # retrieves the value of a tinystore, returns a default if it doesn't exist
-    def get(key):
+    def get(key, default=None):
         ts = TinyStore.objects.filter(key=key).first()
-        return ts.value if ts else getattr(settings, "TINY_STORE", {}).get(key, {})
+        return ts.value if ts else getattr(settings, "TINY_STORE", {}).get(key, default)
 
     # list all the available tinystores
     def keys():
@@ -28,8 +24,12 @@ class TinyStore(models.Model):
             TinyStore.objects.all().order_by("key").values_list("key", flat=True)
         )
 
+    # remove all tinystores
+    def remove_all():
+        TinyStore.objects.all().delete()
+
     # remove a given tinystore
-    def remove(key):
+    def remove_single(key):
         TinyStore.objects.filter(key=key).delete()
 
     # write a tinystore to the database
