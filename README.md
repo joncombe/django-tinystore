@@ -1,21 +1,23 @@
 ```
 from tinystore.models import TinyStore
 
-TinyStore.get('omg')  # {'test': 42}
+TinyStore.get('omg')  # None
 TinyStore.exists('omg')  # False
 TinyStore.keys()  # []
 
 TinyStore.set('omg', {'a': 1})
-
 TinyStore.get('omg')  # {'a': 1}
 TinyStore.exists('omg')  # True
 TinyStore.keys()  # ['omg']
 
-TinyStore.remove_single('omg)
+TinyStore.remove('omg')
+TinyStore.keys()  # []
+# or
+TinyStore.remove_all()
 TinyStore.keys()  # []
 ```
 
-Set defaults in `settings.py`, e.g.
+Optionally, set defaults in `settings.py`, e.g.
 
 ```
 TINY_STORE = {

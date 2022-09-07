@@ -24,13 +24,13 @@ class TinyStore(models.Model):
             TinyStore.objects.all().order_by("key").values_list("key", flat=True)
         )
 
+    # remove a given tinystore
+    def remove(key):
+        TinyStore.objects.filter(key=key).delete()
+
     # remove all tinystores
     def remove_all():
         TinyStore.objects.all().delete()
-
-    # remove a given tinystore
-    def remove_single(key):
-        TinyStore.objects.filter(key=key).delete()
 
     # write a tinystore to the database
     def set(key, value):
